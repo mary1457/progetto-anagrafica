@@ -1,7 +1,10 @@
 package mariapiabaldoin.progetto_anagrafica.payloads;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import mariapiabaldoin.progetto_anagrafica.entities.Address;
 
 public record PersonDTO(
         @NotEmpty(message = "Il codice fiscale è obbligatorio!")
@@ -16,6 +19,8 @@ public record PersonDTO(
         @Size(min = 2, max = 40, message = "Il cognome deve essere compreso tra 2 e 40 caratteri!")
         String cognome,
 
-        Long addressId // id dell’indirizzo a cui associare la persona
+        @NotNull(message = "L'indirizzo è obbligatorio!")
+        @Valid
+        Address address
 ) {
 }
