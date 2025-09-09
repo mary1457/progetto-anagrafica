@@ -17,7 +17,7 @@ public class Person {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    // --- GETTER & SETTER ---
+
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
@@ -50,7 +50,7 @@ public class Person {
         this.address = address;
     }
 
-    // --- TO STRING ---
+
     @Override
     public String toString() {
         return "Person{" +

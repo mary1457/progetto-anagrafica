@@ -31,11 +31,5 @@ public class ExceptionsHandler {
         return new ErrorsDTO("Internal Server Error", LocalDateTime.now());
     }
 
-    @ExceptionHandler(UnauthorizedException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-    public ErrorsDTO handleUnauthorized(UnauthorizedException ex) {
-        return new ErrorsDTO(ex.getMessage(), LocalDateTime.now());
-    }
-
 
 }

@@ -7,13 +7,13 @@ public class ErrorsDTO {
     private String message;
     private LocalDateTime timestamp;
 
-    // --- COSTRUTTORE ---
+
     public ErrorsDTO(String message, LocalDateTime timestamp) {
         this.message = message;
         this.timestamp = timestamp;
     }
 
-    // --- GETTER & SETTER ---
+
     public String getMessage() {
         return message;
     }

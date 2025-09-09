@@ -16,7 +16,7 @@ public class Address {
     private String provincia;
     private String nazione;
 
-    // --- GETTER & SETTER ---
+
     public Long getId() {
         return id;
     }
@@ -65,7 +65,7 @@ public class Address {
         this.nazione = nazione;
     }
 
-    // --- TO STRING ---
+
     @Override
     public String toString() {
         return "Address{" +

@@ -13,6 +13,5 @@ public interface PersonRepository extends JpaRepository<Person, String> {
     // Ricerca per codice fiscale
     Optional<Person> findByCodiceFiscale(String codiceFiscale);
 
-    // Verifica se esiste una persona con codice fiscale
-    boolean existsByCodiceFiscale(String codiceFiscale);
+
 }
