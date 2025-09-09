@@ -18,7 +18,7 @@ public class PersonService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public Person savePerson(PersonDTO body) throws Exception {
+    public Person savePerson(PersonDTO body) {
         // Controllo se la persona esiste già
         this.personRepository.findById(body.codiceFiscale())
                 .ifPresent(person -> {

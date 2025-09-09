@@ -1,6 +1,7 @@
 package mariapiabaldoin.progetto_anagrafica.controllers;
 
 import mariapiabaldoin.progetto_anagrafica.entities.Person;
+import mariapiabaldoin.progetto_anagrafica.exceptions.BadRequestException;
 import mariapiabaldoin.progetto_anagrafica.payloads.PersonDTO;
 import mariapiabaldoin.progetto_anagrafica.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,24 +23,21 @@ public class PersonController {
         this.personService = personService;
     }
 
-    // CREA PERSONA
+    // --- CREA PERSONA ---
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Person savePerson(@RequestBody @Validated PersonDTO body, BindingResult validationResult) {
 
         // Controllo errori di validazione
         if (validationResult.hasErrors()) {
-            String message = validationResult.getAllErrors().stream()
+            String message = validationResult.getAllErrors()
+                    .stream()
                     .map(objectError -> objectError.getDefaultMessage())
                     .collect(Collectors.joining(". "));
-            throw new RuntimeException("Ci sono stati errori nel payload! " + message);
+            throw new BadRequestException("Ci sono stati errori nel payload! " + message);
         }
 
         // Salvataggio persona
-        try {
-            return this.personService.savePerson(body);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        return this.personService.savePerson(body);
     }
 }
