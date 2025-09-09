@@ -1,26 +1,31 @@
 package mariapiabaldoin.progetto_anagrafica.payloads;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import mariapiabaldoin.progetto_anagrafica.entities.Address;
+
 
 public record PersonDTO(
-        @NotEmpty(message = "Il codice fiscale è obbligatorio!")
-        @Size(min = 11, max = 16, message = "Il codice fiscale deve avere tra 11 e 16 caratteri!")
+
+        @NotBlank(message = "Il codice fiscale è obbligatorio!")
+        @Pattern(
+                regexp = "^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$",
+                message = "Formato codice fiscale non valido!"
+        )
         String codiceFiscale,
 
-        @NotEmpty(message = "Il nome è obbligatorio!")
+        @NotBlank(message = "Il nome è obbligatorio!")
         @Size(min = 2, max = 40, message = "Il nome deve essere compreso tra 2 e 40 caratteri!")
         String nome,
 
-        @NotEmpty(message = "Il cognome è obbligatorio!")
+        @NotBlank(message = "Il cognome è obbligatorio!")
         @Size(min = 2, max = 40, message = "Il cognome deve essere compreso tra 2 e 40 caratteri!")
         String cognome,
 
         @NotNull(message = "L'indirizzo è obbligatorio!")
         @Valid
-        Address address
+        AddressDTO address
 ) {
 }

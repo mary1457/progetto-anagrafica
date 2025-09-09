@@ -1,6 +1,8 @@
 package mariapiabaldoin.progetto_anagrafica.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "address")
@@ -10,13 +12,22 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "La via è obbligatoria")
     private String via;
+
+    @Min(value = 1, message = "Il numero civico deve essere maggiore di 0")
     private int numeroCivico;
+
+    @NotBlank(message = "La città è obbligatoria")
     private String citta;
+
+    @NotBlank(message = "La provincia è obbligatoria")
     private String provincia;
+
+    @NotBlank(message = "La nazione è obbligatoria")
     private String nazione;
 
-
+    
     public Long getId() {
         return id;
     }
@@ -64,7 +75,6 @@ public class Address {
     public void setNazione(String nazione) {
         this.nazione = nazione;
     }
-
 
     @Override
     public String toString() {
