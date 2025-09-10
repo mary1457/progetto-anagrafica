@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
     @Query("SELECT a FROM Address a " +
-            "WHERE FUNCTION('LOWER', a.via) = FUNCTION('LOWER', :via) " +
+            "WHERE LOWER(a.via) = LOWER(:via) " +
             "AND a.numeroCivico = :numeroCivico " +
-            "AND FUNCTION('LOWER', a.citta) = FUNCTION('LOWER', :citta) " +
-            "AND FUNCTION('LOWER', a.provincia) = FUNCTION('LOWER', :provincia) " +
-            "AND FUNCTION('LOWER', a.nazione) = FUNCTION('LOWER', :nazione)")
+            "AND LOWER(a.citta) = LOWER(:citta) " +
+            "AND LOWER(a.provincia) = LOWER(:provincia) " +
+            "AND LOWER(a.nazione) = LOWER(:nazione)")
     Optional<Address> findExistingAddress(
             @Param("via") String via,
             @Param("numeroCivico") int numeroCivico,

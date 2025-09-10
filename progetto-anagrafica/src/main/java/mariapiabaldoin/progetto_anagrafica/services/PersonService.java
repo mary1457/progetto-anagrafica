@@ -30,25 +30,25 @@ public class PersonService {
                     throw new BadRequestException("La persona con codice fiscale " + body.codiceFiscale() + " esiste già!");
                 });
 
-        Address addressDTO = body.address();
+        Address address = body.address();
 
 
         Address addressToUse = this.addressRepository.findExistingAddress(
-                addressDTO.getVia(),
-                addressDTO.getNumeroCivico(),
-                addressDTO.getCitta(),
-                addressDTO.getProvincia(),
-                addressDTO.getNazione()
-        ).orElseGet(() -> this.addressRepository.save(addressDTO));
+                address.getVia(),
+                address.getNumeroCivico(),
+                address.getCitta(),
+                address.getProvincia(),
+                address.getNazione()
+        ).orElseGet(() -> this.addressRepository.save(address));
 
-        // Creazione nuova persona
+
         Person newPerson = new Person();
         newPerson.setCodiceFiscale(body.codiceFiscale());
         newPerson.setNome(body.nome());
         newPerson.setCognome(body.cognome());
         newPerson.setAddress(addressToUse);
 
-        // Salvataggio persona
+
         this.personRepository.save(newPerson);
 
         return newPerson;
@@ -71,17 +71,17 @@ public class PersonService {
     public Person updatePerson(String codiceFiscale, PersonDTO body) {
         Person found = this.findByCodiceFiscale(codiceFiscale);
 
-        // Aggiorna indirizzo
-        Address addressDTO = body.address();
-        Address addressToUse = this.addressRepository.findExistingAddress(
-                addressDTO.getVia(),
-                addressDTO.getNumeroCivico(),
-                addressDTO.getCitta(),
-                addressDTO.getProvincia(),
-                addressDTO.getNazione()
-        ).orElseGet(() -> this.addressRepository.save(addressDTO));
 
-        // Aggiornamento dati
+        Address address = body.address();
+        Address addressToUse = this.addressRepository.findExistingAddress(
+                address.getVia(),
+                address.getNumeroCivico(),
+                address.getCitta(),
+                address.getProvincia(),
+                address.getNazione()
+        ).orElseGet(() -> this.addressRepository.save(address));
+
+
         found.setNome(body.nome());
         found.setCognome(body.cognome());
         found.setAddress(addressToUse);

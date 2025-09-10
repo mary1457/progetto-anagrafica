@@ -38,7 +38,7 @@ public class PersonController {
             throw new BadRequestException("Ci sono stati errori nel payload! " + message);
         }
 
-        // Salvataggio persona
+
         return this.personService.savePerson(body);
     }
 

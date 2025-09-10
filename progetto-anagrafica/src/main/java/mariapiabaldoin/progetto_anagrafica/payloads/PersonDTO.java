@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import mariapiabaldoin.progetto_anagrafica.entities.Address;
 
 
 public record PersonDTO(
@@ -26,6 +27,6 @@ public record PersonDTO(
 
         @NotNull(message = "L'indirizzo è obbligatorio!")
         @Valid
-        AddressDTO address
+        Address address
 ) {
 }

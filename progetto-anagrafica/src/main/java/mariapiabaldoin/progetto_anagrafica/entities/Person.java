@@ -30,7 +30,7 @@ public class Person {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    
+
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
@@ -70,7 +70,8 @@ public class Person {
                 "codiceFiscale='" + codiceFiscale + '\'' +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
-                ", addressId=" + (address != null ? address.getId() : null) +
+                ", addressId=" + address.getId() +
                 '}';
     }
+
 }
