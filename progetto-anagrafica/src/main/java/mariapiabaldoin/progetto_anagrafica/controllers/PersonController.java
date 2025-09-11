@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/person")
+
 public class PersonController {
 
     private final PersonService personService;
